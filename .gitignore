@@ -1,0 +1,37 @@
+# Rust builds
+/target/
+**/target/
+*.pdb
+
+# Local RE evidence, binaries and potentially private data
+/research/local/
+/research/samples/
+/research/dumps/
+/research/private/
+*.dmp
+*.mdmp
+*.core
+*.exe
+*.dll
+*.bin
+*.sav
+*.save
+*.zip
+*.7z
+*.rar
+*.ct
+*.bndb
+*.bndb.bak
+*.i64
+*.idb
+
+# Local IDE/editor settings
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Logs and environment
+*.log
+.env
+.env.*
