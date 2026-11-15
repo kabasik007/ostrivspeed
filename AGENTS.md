@@ -30,4 +30,4 @@ Build a clean Windows Rust tool that controls **Ostriv's own simulation speed**,
 - Document local manual setup and commands; respect error handling and run `cargo fmt --check`, `cargo clippy -- -D warnings`, `cargo test` and a Windows release build when available.
 - Never conceal a failed build or pretend to have tested on Windows if not done.
 
-Read `docs/REVERSE_ENGINEERING_PLAN.md` and `docs/CODEX_TASK.md` for milestone requirements. The first valuable deliverable is an evidence-backed **simulation-speed call graph**, not an unverified 60x slider.
+Read `docs/REVERSE_ENGINEERING_PLAN.md` and `research/RE_FINDINGS.md` for milestone requirements and measured evidence. The first valuable deliverable is an evidence-backed **simulation-speed call graph**, not an unverified high-speed slider.

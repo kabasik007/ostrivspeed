@@ -1,3 +1,5 @@
+#![cfg_attr(windows, windows_subsystem = "windows")]
+
 mod fingerprint;
 mod hotkeys;
 mod process;
@@ -7,7 +9,7 @@ mod ui;
 fn main() -> eframe::Result {
     let args: Vec<String> = std::env::args().collect();
     if args.iter().any(|arg| arg == "--hotkey-check") {
-        let service = hotkeys::HotkeyService::new();
+        let service = hotkeys::HotkeyService::new(&hotkeys::load());
         println!("{}", service.status);
         return Ok(());
     }

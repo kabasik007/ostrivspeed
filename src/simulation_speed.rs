@@ -8,7 +8,8 @@ const TARGET_SPEED_RVA: usize = 0x64F860;
 const CURRENT_SPEED_RVA: usize = 0x64F160;
 const WORLD_TIME_RVA: usize = 0x64F170;
 const VALID_SPEEDS: &[u32] = &[1, 5, 12, 15, 20, 30, 50];
-const ATTACHABLE_SPEEDS: &[u32] = &[1, 5, 12, 15, 20, 30, 50, 60];
+const EXPERIMENTAL_SPEEDS: &[u32] = &[60, 70, 100];
+const ATTACHABLE_SPEEDS: &[u32] = &[1, 5, 12, 15, 20, 30, 50, 60, 70, 100];
 
 pub struct SpeedController {
     #[cfg(windows)]
@@ -147,8 +148,21 @@ impl SpeedController {
         if !VALID_SPEEDS.contains(&speed) {
             return Err("Unsupported speed preset".into());
         }
+        self.set_checked(speed)
+    }
+
+    /// Only called by the GUI's bounded experiment. These values have no
+    /// demonstrated stable throughput and must never be normal presets.
+    pub fn set_experimental(&mut self, speed: u32) -> Result<(), String> {
+        if !EXPERIMENTAL_SPEEDS.contains(&speed) {
+            return Err("Unsupported experimental speed".into());
+        }
+        self.set_checked(speed)
+    }
+
+    fn set_checked(&mut self, speed: u32) -> Result<(), String> {
         let before = self.read()?;
-        if !before.is_finite() || before < 0.0 || before > 60.0 {
+        if !before.is_finite() || before < 0.0 || before > 100.0 {
             return Err(format!(
                 "Unexpected live target speed {before}; write refused"
             ));

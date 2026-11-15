@@ -6,7 +6,6 @@
 - In-game version text: `Alpha 5 patch 9 (ver. 0.5.9.65)`.
 - `ostriv.exe`: PE32+, AMD64, 7,499,264 bytes, SHA-256 `d07fdcde38cc4a1e57696332b68ff6f74bf8fb931659b71b414d28c1a89d8be0`.
 - Binary Ninja Free 6.0.10905 is installed. Its headless Python API is unavailable here; disassembly below was obtained with locally installed Visual Studio `dumpbin /DISASM`. The game binary was never edited. Private disassembly and RAM snapshots are ignored under `research/local/`.
-- The 144,416-byte file named `Ostriv Trainer.exe` is a .NET Framework `WeMod-Setup` assembly, version 8.0.0.0, SHA-256 `7d6d1ee1a1cea4d0d019a90ad13bed45fa5998b4d528e57afa9e820829505af9`. It was inspected statically and never executed. REA evidence: `ev_19f69bd61d980d88322f71a7a662c332143b098d755cf0c69f63a5c5649d4f4c`.
 
 ## Native speed path (this hash only)
 
