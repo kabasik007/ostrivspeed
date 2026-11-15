@@ -18,7 +18,9 @@ target\release\ostrivspeed.exe --status
 target\release\ostrivspeed.exe
 ```
 
-`--status` discovers a running `ostriv.exe` and prints PID, executable path, architecture, SHA-256 and whether its build is recognized. The GUI exposes an explicit **experimental** attach checkbox, native speed presets, the live requested value, diagnostics and a **Restore 1× and detach** action. Unknown builds cannot attach. If Windows denies process-write access, launch the app with matching integrity to the game; do not disable Windows security controls.
+`--status` discovers a running `ostriv.exe` and prints PID, executable path, architecture, SHA-256 and whether its build is recognized. The dark GUI shows a speed slider, preset buttons, live target/current/effective speed, process discovery, build verification and diagnostics. Enable control for the session, then attach before changing speed. Unknown builds cannot attach. If Windows denies process-write access, launch the app with matching integrity to the game; do not disable Windows security controls.
+
+The dashboard layout takes inspiration from [OpenSpeedy](https://github.com/game1024/OpenSpeedy), but uses original Rust/egui code and Ostriv's verified game variable. It does not copy OpenSpeedy code or its Windows timer interception. Registered global shortcuts: `Ctrl+Alt+0` resets to 1×; `Ctrl+Alt+1` through `Ctrl+Alt+7` select 1×, 5×, 12×, 15×, 20×, 30×, 50×; `Ctrl+Alt+Up/Down` steps through presets. Shortcuts change speed only while attached. `--hotkey-check` reports how many shortcuts Windows accepted.
 
 For a bounded measurement that automatically attempts to restore 1×:
 

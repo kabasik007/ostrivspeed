@@ -1,10 +1,16 @@
 mod fingerprint;
+mod hotkeys;
 mod process;
 mod simulation_speed;
 mod ui;
 
 fn main() -> eframe::Result {
     let args: Vec<String> = std::env::args().collect();
+    if args.iter().any(|arg| arg == "--hotkey-check") {
+        let service = hotkeys::HotkeyService::new();
+        println!("{}", service.status);
+        return Ok(());
+    }
     if args.iter().any(|arg| arg == "--status") {
         use process::ProcessBackend;
         match process::NativeProcessBackend.find_game() {
@@ -119,9 +125,14 @@ fn main() -> eframe::Result {
         }
         return Ok(());
     }
-    let options = eframe::NativeOptions::default();
+    let options = eframe::NativeOptions {
+        viewport: eframe::egui::ViewportBuilder::default()
+            .with_inner_size([1050.0, 700.0])
+            .with_min_inner_size([860.0, 620.0]),
+        ..Default::default()
+    };
     eframe::run_native(
-        "OstrivSpeed research inspector",
+        "OstrivSpeed",
         options,
         Box::new(|_cc| Ok(Box::new(ui::InspectorApp::default()))),
     )

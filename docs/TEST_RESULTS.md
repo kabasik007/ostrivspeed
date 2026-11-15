@@ -21,5 +21,8 @@ Build: Ostriv `0.5.9.65`, Steam build `26211342`, SHA-256 `d07fdcde38cc4a1e57696
 | `cargo clippy --offline --all-targets -- -D warnings` | Passed. |
 | `cargo test --offline` | 2 unit tests passed (PE architecture parser, unknown-build refusal). |
 | Windows release build | Final `cargo build --offline --release` passed. Release `--status` recognized the running game; release `--restore` returned readback 1×. |
+| Dashboard visual smoke test | Release GUI opened at 1050×700, found the running Ostriv PID 11384, displayed recognized SHA-256, cards and diagnostics without layout clipping. After attach, read live target/current 12.0× and measured world-time rate about 12.1×. No speed write was made in this GUI test. |
+| Global shortcut registration | Release `--hotkey-check` reported `10 global shortcuts active`. An automated keypress test was interrupted by concurrent user input, so key dispatch was not verified end to end. |
+| GUI restore path | Code now calls the verified controller's `set(1)` on detach, including when attached during a stock 5×/12× mode. This path was not manually exercised in the GUI this session. |
 
 The trial mode writes only the confirmed target-speed double in the live game process, reads it back, and restores 1× when the timed test ends. The executable file on disk was not changed. The Codex sandbox denied `PROCESS_VM_WRITE`; the explicitly escalated local run succeeded. A normal user-launched GUI requires Windows process-write access to the game. The controller also checks the executable's setter bytes and initial target bytes in addition to its full-file hash.
